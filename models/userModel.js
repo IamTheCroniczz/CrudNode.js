@@ -1,5 +1,5 @@
 const db = require('../config/db');
-const {getAllUsers, getUserById} = require('../controllers/userController');
+
 
 const User = {
     // Esta linha define uma função chamada que recebe um único argumento,

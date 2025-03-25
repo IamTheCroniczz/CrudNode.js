@@ -18,6 +18,7 @@ app.get('/edit/:id', userController.getUserById);
 app.post('/edit/:id', userController.updateUser);
 app.get('/dell/:id', userController.getdeleteByUser);
 app.post('/dell/:id', userController.deleteUser);
+app.post('/login/', userController.loginUser);
 
 
 // Iniciar o servidor

@@ -18,6 +18,26 @@ exports.getUserById = (req, res) => {
         res.render('edit' , {user});
     });
 };
+exports.loginUser = (req, res) => {
+    const { email, password } = req.body;
+
+    User.authenticate(email, password, (err, user) => {
+        if (err || !user) {
+            return res.status(401).render('login', { error: 'Credenciais inválidas' });
+        }
+
+        // Aqui você pode salvar a sessão do usuário
+        req.session.user = user;
+        res.redirect('/index'); // Redireciona para a página desejada
+    });
+};
+
+exports.getUserByIdForLogin = (req, res) => {
+    const userId = req.params.id;
+    User.getUserById(userId, (user) => {
+        res.render('login', { user });
+    });
+};
 
 
 exports.addUser = (req, res) => {
@@ -38,7 +58,7 @@ exports.updateUser = (req, res) => {
         name: req.body.name,
         email: req.body.email,
         fone: req.body.fone,
-        endereco: req.body.enderec
+        endereco: req.body.endereco
         
     };
     User.updateUser(userId, updateUser, () =>{

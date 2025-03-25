@@ -19,6 +19,9 @@ app.post('/edit/:id', userController.updateUser);
 app.get('/dell/:id', userController.getdeleteByUser);
 app.post('/dell/:id', userController.deleteUser);
 app.post('/login/', userController.loginUser);
+app.get('/login', (req, res) => {
+    res.render('login', { loginFalhou: false }); 
+});
 
 
 // Iniciar o servidor
